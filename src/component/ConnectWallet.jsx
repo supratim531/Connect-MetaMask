@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import ErrorToaster from "./ErrorToaster";
 
@@ -35,7 +36,7 @@ function ConnectWallet() {
         params: [walletAddress, "latest"]
       });
       console.log("res:", res);
-      const walletBalance = parseFloat(parseInt(res) / 1e18).toFixed(15);
+      const walletBalance = ethers.formatEther(res);
       setWalletBalance(walletBalance);
     } catch (err) {
       console.log("err:", err);
@@ -101,8 +102,8 @@ function ConnectWallet() {
         />
       }
 
-      <div className="center">
-        <div className="p-6 flex flex-col gap-4 rounded-sm shadow shadow-slate-400">
+      <div className="center w-[98%] ms:w-[80%] md:w-auto">
+        <div className="p-6 flex flex-col gap-4 rounded shadow shadow-slate-400">
           <div className="text-2xl font-semibold">Connection to MetaMask using window.ethereum</div>
           {
             (!walletAddress && isLoading) &&
@@ -123,7 +124,7 @@ function ConnectWallet() {
             walletAddress &&
             <div className="font-semibold space-x-1 text-center">
               <span className="text-lg">Wallet Balance:</span>
-              <span className="text-slate-600">{walletBalance} ETH</span>
+              <span className="break-all xs:break-keep text-slate-600">{walletBalance} ETH</span>
             </div>
           }
           {

@@ -4,7 +4,7 @@ import ConnectWallet from "./component/ConnectWallet";
 function App() {
   return (
     <div className="px-4">
-      <div className="mx-auto container">
+      <div className="ms:mx-auto ms:container">
         <ConnectWallet />
       </div>
     </div>
